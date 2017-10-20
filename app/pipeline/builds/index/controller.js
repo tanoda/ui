@@ -18,6 +18,7 @@ export default Controller.extend({
 
       return newEvent.save().then(() => {
         this.set('isShowingModal', false);
+        this.get('model.pipeline').get('events').pushObject(newEvent);
 
         return this.transitionToRoute('pipeline', newEvent.get('pipelineId'));
       }).catch((e) => {
